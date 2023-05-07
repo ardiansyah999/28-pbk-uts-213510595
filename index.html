@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Aplikasi Kegiatan</title>
+	<link rel="stylesheet" type="text/css" href="wa.css">
+</head>
+<body>
+	<h1>Aplikasi Kegiatan</h1>
+	<div id="app">
+		<form>
+			<input type="text" v-model="newActivity" placeholder="Tambahkan kegiatan baru">
+			<button type="submit" v-on:click.prevent="addActivity">Tambahkan</button>
+		</form>
+		<ul>
+			<li v-for="(activity, index) in activities" :key="index" :class="{ completed: activity.completed }">
+				{{ activity.name }}
+				<button v-if="!activity.completed" v-on:click.prevent="completeActivity(index)">Selesai</button>
+				<button v-on:click.prevent="removeActivity(index)">Hapus</button>
+			</li>
+		</ul>
+		<div>
+			<label><input type="checkbox" v-model="showCompleted"> Tampilkan hanya kegiatan yang belum selesai</label>
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="war.js"></script>
+</body>
+</html>
